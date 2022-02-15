@@ -1,4 +1,4 @@
-package com.example.demoProject.Film;
+package com.example.demoProject.film;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class FilmController {
     }*/
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Filmclass> getAllUsers() {
+    public @ResponseBody Iterable<Film> getAllUsers() {
         // This returns a JSON or XML with the users
         return filmRepository.findAll();
     }
