@@ -30,17 +30,17 @@ class App extends Component {
 
     render(){
         return (
-            <div class="center">
-                <table>
+            <div >
+                <button onClick={this.getFilm}>Toon alle films</button>
+                <table className="center">
                     <tr>
                         <th>Title</th>
                         <th>Regisseur</th>
                         <th>Jaar</th>
                     </tr>
                 </table>
-                <button onClick={this.getFilm}>Toon alle films</button>
                     {this.state.films.map(film =>
-                        <table>
+                        <table class="center">
                         <tr key={film.id}>
                             <th>{film.title}</th>
                             <th>{film.regisseur}</th>
