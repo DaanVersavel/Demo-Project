@@ -1,10 +1,13 @@
 package com.example.demoProject.film;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
+@Repository //This class is a Repository
+public interface FilmRepository extends JpaRepository<Film,Long> {
 
-public interface FilmRepository extends CrudRepository<Film, Integer> {
-
+    @Query("SELECT s from Film s WHERE s.title = ?1")
+    Optional<Film> findFilmByTitle(String title);
 }
