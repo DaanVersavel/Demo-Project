@@ -1,32 +1,53 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React, { Component } from "react";
 
-//import axios from "axios";
+import axios from "axios";
+const api= axios.create({
+    baseURL: 'http://localhost:8080/demo'
+})
 
-function App() {
-  return (
-    <div>
 
-      <h1 style={{color: "grey"}}>Film database</h1>
-      <button type="button">
-      Toon alle films
-      </button>
-        <div>Voeg film toe</div>
-        <div>
-            <form>
-                <label htmlFor="name">Naam:</label>
-                <input type="text" id="name" name="name"  size="10"></input><br/><br/>
+class App extends Component {
+    state ={
+        films: []
+    }
+    constructor() {
+        super();
+        this.setState({films : null})
 
-                <label htmlFor="regisseur">Regisseur:</label>
-                <input type="text" id="reg" name="reg"  size="10"></input><br/><br/>
-                <input type="submit" value="Submit"></input>
-            </form>
+    }
 
-        </div>
-        <div>Film verwijderen</div>
-    </div>
-  );
+    getFilm = async () =>{
+        let data = await api.get('/').then(({data})=> data);
+        this.setState({
+            films: data
+        })
+    }
+
+
+    render(){
+        return (
+            <div >
+                <button onClick={this.getFilm}>Toon alle films</button>
+                <table className="center">
+                    <tr>
+                        <th>Title</th>
+                        <th>Regisseur</th>
+                        <th>Jaar</th>
+                    </tr>
+                </table>
+                    {this.state.films.map(film =>
+                        <table class="center">
+                        <tr key={film.id}>
+                            <th>{film.title}</th>
+                            <th>{film.regisseur}</th>
+                            <th>{film.jaar}</th>
+                        </tr>
+                    </table>)}
+            </div>
+        );
+    }
 }
 
 export default App;
