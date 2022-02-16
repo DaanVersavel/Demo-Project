@@ -1,12 +1,11 @@
-package com.example.demoProject.film;
+package com.example.demoProject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class Accessingdatamysql {
+@SpringBootApplication //main application
+public class DemoApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Accessingdatamysql.class, args);
+        SpringApplication.run(DemoApplication.class, args);
     }
-
 }
