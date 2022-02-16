@@ -24,43 +24,36 @@ class App extends Component {
             films: data
         })
     }
+    deleteFilm = async (id) =>{
+        let data = await api.delete(`/${id}`)
+    }
 
     render(){
         return (
-            <div>
+            <div class="center">
+                <table>
+                    <tr>
+                        <th>Title</th>
+                        <th>Regisseur</th>
+                        <th>Jaar</th>
+                    </tr>
+                </table>
                 <button onClick={this.getFilm}>Toon alle films</button>
-                    {this.state.films.map(film => <h2 key={film.id}>{film.title}</h2>)}
+                    {this.state.films.map(film =>
+                        <table>
+                        <tr key={film.id}>
+                            <th>{film.title}</th>
+                            <th>{film.regisseur}</th>
+                            <th>{film.jaar}</th>
+                        </tr>
+                    </table>)}
             </div>
         );
     }
 }
 
-/*{this.state.films.map(film => <h2 key={film.id}>{film.title}</h2>)}*/
-
-/*api.get('/').then(res => {
-            console.log(res.data)
-            this.setState({films:res.data})
-        })
-
-
-        <div>Voeg film toe</div>
-            <div>
-                <form>
-                    <label htmlFor="name">Naam:</label>
-                    <input type="text" id="name" name="name"  size="10"></input><br/><br/>
-
-                    <label htmlFor="regisseur">Regisseur:</label>
-                    <input type="text" id="reg" name="reg"  size="10"></input><br/><br/>
-                    <input type="submit" value="Submit"></input>
-                </form>
-
-            </div>
-            <div>Film verwijderen</div>
-
-
-            <button onClick={this.getFilm}>Toon alle films</button>
-                    {this.state.films.map(film => <h2 key={film.id}>{film.title}</h2>)}
-            </div>*/
+/*<button onClick={this.deleteFilm(film.id)}>verwijder</button>
+* {this.state.films.map(film => <h2 key={film.id}>{film.title}</h2>)}*/
 
 
 export default App;
