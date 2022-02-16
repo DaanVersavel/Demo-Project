@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React, { Component } from "react";
 
@@ -24,9 +24,7 @@ class App extends Component {
             films: data
         })
     }
-    deleteFilm = async (id) =>{
-        let data = await api.delete(`/${id}`)
-    }
+
 
     render(){
         return (
@@ -51,9 +49,5 @@ class App extends Component {
         );
     }
 }
-
-/*<button onClick={this.deleteFilm(film.id)}>verwijder</button>
-* {this.state.films.map(film => <h2 key={film.id}>{film.title}</h2>)}*/
-
 
 export default App;
