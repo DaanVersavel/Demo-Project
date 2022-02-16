@@ -17,11 +17,13 @@ public class FilmController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:3000")
     public List<Film> getFilms(){
         return filmService.getFilms();
     }
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:3000")
     public void registerNewFilm(@RequestBody Film film){
         filmService.addNewFilm(film);
     }
