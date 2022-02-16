@@ -14,38 +14,53 @@ class App extends Component {
     }
     constructor() {
         super();
-        api.get('/').then(res => {
-            console.log(res.data)
-            this.setState({films:res.data})
-        })
+        this.setState({films : null})
+
     }
 
+    getFilm = async () =>{
+        let data = await api.get('/').then(({data})=> data);
+        this.setState({
+            films: data
+        })
+    }
 
     render(){
         return (
             <div>
-                <h1 style={{color: "grey"}}>Film database</h1>
-                {this.state.films.map(film => <h2 key={film.id}>{film.title}</h2>)}
-
-                <button type="button">
-                    Toon alle films
-                </button>
-                <div>Voeg film toe</div>
-                <div>
-                    <form>
-                        <label htmlFor="name">Naam:</label>
-                        <input type="text" id="name" name="name"  size="10"></input><br/><br/>
-
-                        <label htmlFor="regisseur">Regisseur:</label>
-                        <input type="text" id="reg" name="reg"  size="10"></input><br/><br/>
-                        <input type="submit" value="Submit"></input>
-                    </form>
-
-                </div>
-                <div>Film verwijderen</div>
+                <button onClick={this.getFilm}>Toon alle films</button>
+                    {this.state.films.map(film => <h2 key={film.id}>{film.title}</h2>)}
             </div>
         );
     }
 }
+
+/*{this.state.films.map(film => <h2 key={film.id}>{film.title}</h2>)}*/
+
+/*api.get('/').then(res => {
+            console.log(res.data)
+            this.setState({films:res.data})
+        })
+
+
+        <div>Voeg film toe</div>
+            <div>
+                <form>
+                    <label htmlFor="name">Naam:</label>
+                    <input type="text" id="name" name="name"  size="10"></input><br/><br/>
+
+                    <label htmlFor="regisseur">Regisseur:</label>
+                    <input type="text" id="reg" name="reg"  size="10"></input><br/><br/>
+                    <input type="submit" value="Submit"></input>
+                </form>
+
+            </div>
+            <div>Film verwijderen</div>
+
+
+            <button onClick={this.getFilm}>Toon alle films</button>
+                    {this.state.films.map(film => <h2 key={film.id}>{film.title}</h2>)}
+            </div>*/
+
 
 export default App;
