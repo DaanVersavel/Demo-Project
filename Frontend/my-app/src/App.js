@@ -25,7 +25,7 @@ class App extends Component {
         return (
             <div>
                 <h1 style={{color: "grey"}}>Film database</h1>
-                {this.state.films.map(film => <h2 key={film.id}>(film.title)</h2>)}
+                {this.state.films.map(film => <h2 key={film.id}>{film.title}</h2>)}
 
                 <button type="button">
                     Toon alle films
